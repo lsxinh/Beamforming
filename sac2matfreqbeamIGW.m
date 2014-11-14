@@ -1,7 +1,7 @@
 clear all
 
-ev=dir(['/data/geophys/scratch/jn6g09/UWDATA/Event*']); %list of Event directories
-ddrr='/data/geophys/scratch/jn6g09/UWDATA/'; %directory containing Event directories
+ev=dir(['/data/geophys/scratch/jn6g09/CASCADIADATA/Event_2013_018*']); %list of Event directories
+ddrr='/data/geophys/scratch/jn6g09/CASCADIADATA/'; %directory containing Event directories
 
 
 %Nsample=zeros(366,36,18);
@@ -10,9 +10,9 @@ ddrr='/data/geophys/scratch/jn6g09/UWDATA/'; %directory containing Event directo
 for kk=1:length(ev); %loop over Events
     clearvars -except ev ddrr kk
     stations={}
-    outpath =   ['/data/geophys/scratch/jn6g09/UWDATA/',ev(kk).name,'/LHZ_processed1_9/']; % this is the directory where the output is saved
+    outpath =   ['/data/geophys/scratch/jn6g09/CASCADIADATA/',ev(kk).name,'/LDH_processed1/']; % this is the directory where the output is saved
 
-    names=dir([ddrr,ev(kk).name,'/LHZ_rsp/*LHZ.SAC.rsp']); %this is the date that you want to work with
+    names=dir([ddrr,ev(kk).name,'/LDH_rsp/*LDH.SAC.rsp']); %this is the date that you want to work with
     nfiles = length(names)  %number of stations
 
     Ndays=1;
@@ -33,7 +33,7 @@ for kk=1:length(ev); %loop over Events
         fprintf(1,'\r file= %i ',p)
     
         %read in sac file
-        dataname =[ ddrr,ev(kk).name,'/LHZ_rsp/', names(p).name] ;
+        dataname =[ ddrr,ev(kk).name,'/LDH_rsp/', names(p).name] ;
         sac=readsac(dataname);
     
         %get info (station name, location, sampling rate)
@@ -124,14 +124,14 @@ for kk=1:length(ev); %loop over Events
         Imax=max(I);
      
         %save spectra
-        outfile= strcat(sac.staname(1:end), '.', num2str(iyr), '.',  num2str(imonth), '.LHZ');
+        outfile= strcat(sac.staname(1:end), '.', num2str(iyr), '.', num2str(imonth), '.LDH');
         save([outpath outfile], 'info', 'fseis', 'Imin', 'Imax', 'pp', 'frq', 'frq2');
        
         clear sac
     end %for block (loop over stations)
     
     %save station info
-    save([outpath 'stations.LHZ'],'infom', 'Nsample');
+    save([outpath 'stations.LDH'],'infom', 'Nsample');
     end 
 end %for block (loop over events)
 

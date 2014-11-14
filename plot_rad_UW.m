@@ -3,7 +3,7 @@ clear all; close all
 %% Actual beamforming data
 % load day
 %load (['/data/geophys/scratch/ep8g10/pbm_MSci/2012_302.mat']);
-load ('/data/geophys/scratch/jn6g09/CASCADIADATA/Event_2013_020/LHZ_processedbm_95/LHZ.2013.20','-mat');
+load ('/data/geophys/scratch/jn6g09/UWDATA/Event_2013_020/LHZ_processedbm_95/LHZ.2013.20','-mat');
 
 
 % %% data reshaped for radar plot (slowness against azimuth)

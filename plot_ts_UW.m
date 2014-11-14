@@ -1,8 +1,8 @@
 % %% beamforming output for whole year
 % clear
 % 
-% system('ls /data/geophys/scratch/jn6g09/CASCADIADATA/Event*/LHZ_processedbm_95/* > filelistCas1')
-% fl=textread('filelistCas1','%s');
+% system('ls /data/geophys/scratch/jn6g09/UWDATA/Event*/LHZ_processedbm_95/* > filelistUW1')
+% fl=textread('filelistUW1','%s');
 % fl=char(fl);
 % 
 % %sang=zeros(138,length(fl)*33); %138 is number of frequencies.  33 is number of timewindows each day
@@ -33,17 +33,17 @@
 % display(fl(i,:));
 % end
 % 
-% eval(['save /data/geophys/scratch/jn6g09/Beamforming/ts_Cas_LHZ ' 'sang spwr ssl']);
+% eval(['save /data/geophys/scratch/jn6g09/Beamforming/ts_UW_LHZ ' 'sang spwr ssl']);
 % clearvars -except Ntheta Ntime Nfrq I frq theta SL timestep
-% save('var_Cas_LHZ')
+% save('var_UW_LHZ')
 
 %% contour plot
 clear all;close all;
-load (['/data/geophys/scratch/jn6g09/Beamforming/ts_Cas_LHZ.mat']); %output from section 1
-load (['/data/geophys/scratch/jn6g09/Beamforming/var_Cas_LHZ.mat']) % beamforming variables- slowness, frequency
+load (['/data/geophys/scratch/jn6g09/Beamforming/ts_UW_LHZ.mat']); %output from section 1
+load (['/data/geophys/scratch/jn6g09/Beamforming/var_UW_LHZ.mat']) % beamforming variables- slowness, frequency
 
-system('ls /data/geophys/scratch/jn6g09/CASCADIADATA/Event*/LHZ_processedbm_95/* > filelistCas1')
-fl=textread('filelistCas1','%s');
+system('ls /data/geophys/scratch/jn6g09/UWDATA/Event*/LHZ_processedbm_95/* > filelistUW1')
+fl=textread('filelistUW1','%s');
 fl=char(fl);
 
 %choose dates to plot
@@ -52,7 +52,7 @@ stop=[2013 1 1 0 0 0];
 
 %choose frequencies to plot
 freqs=frq(I)';
-startf=0.0;
+startf=0.00;
 stopf=0.3;
 
 %choose which plots to make (=1 to plot)
